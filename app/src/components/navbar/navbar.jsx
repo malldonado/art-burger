@@ -9,15 +9,15 @@ function navbar() {
       <div className="max-w-7xl h-full w-full flex justify-between items-end mx-auto">
         <div className="w-[70%] h-full m-auto flex items-end">
           <img className="w-40 mr-10" src={Logo} alt="" />
-          <ul className="flex text-white font-semibold text-2xl gap-x-6">
+          <ul className="flex text-white font-bold text-xl gap-x-6">
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <a href="/home">Out Menu</a>
+              <a href="/home">MENU</a>
             </li>
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <a href="/home">Categories</a>
+              <a href="/home">CATEGORIES</a>
             </li>
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <a href="/home">Burgers</a>
+              <a href="/home">BURGERS</a>
             </li>
           </ul>
         </div>

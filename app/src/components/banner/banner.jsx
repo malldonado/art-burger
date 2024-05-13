@@ -1,10 +1,33 @@
-import Banner from "../../assets/banner.svg";
+import Image from "../../assets/banner.svg";
 import { FaTwitter, FaFacebookF, FaInstagram } from "react-icons/fa";
+import { useEffect, useRef } from "react";
 
-function banner() {
+function Banner() {
+  const bannerRef = useRef(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (bannerRef.current) {
+        const scrollPosition = window.scrollY;
+        bannerRef.current.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="w-full h-full relative mt-10 mb-32">
-      <img className="w-full h-full object-cover" src={Banner} alt="" />
+    <div className="w-full h-[700px] relative overflow-hidden mt-20">
+      <div
+        ref={bannerRef}
+        className="w-full h-[700px] absolute bg-cover bg-center"
+        style={{ backgroundImage: `url(${Image})` }}
+      >
+      </div>
       <div className="absolute bottom-10 font-bold text-4xl left-10">
         <FaTwitter className="cursor-pointer text-white hover:text-[#f8b825]" />
         <FaFacebookF className="mt-5 cursor-pointer text-white hover:text-[#f8b825]" />
@@ -14,4 +37,4 @@ function banner() {
   );
 }
 
-export default banner;
+export default Banner;
