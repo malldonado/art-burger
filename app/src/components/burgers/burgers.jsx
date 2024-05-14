@@ -13,7 +13,7 @@ const products = [
 
 function menu() {
   return (
-    <div className="my-24 max-w-7xl mx-auto">
+    <div className="mt-24 max-w-7xl mx-auto">
       <span className="text-[100px] text-white font-bold text-left mb-10 uppercase">BURGERS</span>
       <div className="w-full grid grid-cols-3 gap-1">
         {products.map((product, index) => (

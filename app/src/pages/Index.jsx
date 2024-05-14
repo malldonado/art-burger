@@ -12,7 +12,6 @@ function Index() {
       <Navbar />
       <Banner />
       <Categories />
-      <Rating />
       <Burgers />
       <Menu />
       <Footer />

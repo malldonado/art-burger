@@ -21,12 +21,13 @@ function Banner() {
   }, []);
 
   return (
-    <div className="w-full h-[700px] relative overflow-hidden mt-20">
+    <div className="w-full h-[700px] relative overflow-hidden mt-20 text-center">
       <div
         ref={bannerRef}
         className="w-full h-[700px] absolute bg-cover bg-center"
         style={{ backgroundImage: `url(${Image})` }}
       >
+        {/* <span className="text-[200px] text-white font-bold h-full w-full m-auto relative fixed top-1/2 bottom-0 left-0 right-0">ART BURGER</span> */}
       </div>
       <div className="absolute bottom-10 font-bold text-4xl left-10">
         <FaTwitter className="cursor-pointer text-white hover:text-[#f8b825]" />
