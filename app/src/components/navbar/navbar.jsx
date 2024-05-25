@@ -2,44 +2,23 @@ import React, { useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
-import Logo from "../../assets/logo.svg";
 import {
   MdOutlineShoppingBag,
   MdOutlineSearch,
   MdOutlinePersonOutline,
+  MdMenu,
 } from "react-icons/md";
+import Logo from "../../assets/logo.svg";
 
 const products = [
-  {
-    id: 1,
-    name: "Throwback Hip Bag",
-    href: "#",
-    color: "Salmon",
-    price: "$90.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg",
-    imageAlt:
-      "Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt.",
-  },
-  {
-    id: 2,
-    name: "Medium Stuff Satchel",
-    href: "#",
-    color: "Blue",
-    price: "$32.00",
-    quantity: 1,
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-02.jpg",
-    imageAlt:
-      "Front of satchel with blue canvas body, black straps and handle, drawstring top, and front zipper pouch.",
-  },
+  // Produtos fictícios para o modal do carrinho
 ];
 
 function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const openCartModal = () => setIsCartOpen(true);
   const closeCartModal = () => setIsCartOpen(false);
@@ -47,34 +26,39 @@ function Navbar() {
   const closeLoginModal = () => setIsLoginOpen(false);
   const openSearchModal = () => setIsSearchOpen(true);
   const closeSearchModal = () => setIsSearchOpen(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <div className="w-full h-24 bg-black flex items-center justify-between max-w-7xl mx-auto px-4">
-      <div className="max-w-7xl h-full w-full flex justify-between items-end mx-auto">
-        <div className="w-[70%] h-full m-auto flex items-end">
-          <img className="w-40 mr-10" src={Logo} alt="" />
-          <ul className="flex text-white font-bold text-xl gap-x-6">
+      <div className="max-w-7xl h-full w-full flex justify-between items-center mx-auto">
+        <div className="flex items-center">
+          <Link to="/">
+            <img className="w-40 mr-10" src={Logo} alt="Logo" />
+          </Link>
+          <div className="hidden md:flex">
+          <ul className="flex text-white font-bold text-2xl gap-x-6">
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
               <Link to="/categories">CATEGORIES</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <Link to="/menu">MENU</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
               <Link to="/burgers">BURGERS</Link>
             </li>
+            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
+              <Link to="/menu">MENU</Link>
+            </li>
           </ul>
+          </div>
         </div>
-        <div className="w-[30%] flex justify-end text-5xl gap-x-5">
+        <div className="flex items-center gap-x-5">
           <div className="text-white hover:text-[#f8b825] cursor-pointer">
             <MdOutlineSearch
-              className="h-full text-[41px] flex items-end pt-[2px]"
+              className="h-full md:text-[41px] text-[25px] flex items-end pt-[2px]"
               onClick={openSearchModal}
             />
           </div>
           <div className="text-white hover:text-[#f8b825] cursor-pointer">
             <MdOutlinePersonOutline
-              className="text-[44px]"
+              className="md:text-[44px] text-[29px]"
               onClick={openLoginModal}
             />
           </div>
@@ -82,10 +66,98 @@ function Navbar() {
             className="text-white hover:text-[#f8b825] cursor-pointer"
             onClick={openCartModal}
           >
-            <MdOutlineShoppingBag className="text-[45px] pb-1" />
+            <MdOutlineShoppingBag className="md:text-[45px] text-[26px] md:pb-1" />
+          </div>
+          <div
+            className="md:hidden text-white hover:text-[#f8b825] cursor-pointer"
+            onClick={toggleMenu}
+          >
+            <MdMenu className="text-[33px]" />
           </div>
         </div>
       </div>
+      <Transition show={isMenuOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-10 md:hidden"
+          onClose={toggleMenu}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-75" />
+          </Transition.Child>
+          <div className="fixed inset-0 overflow-hidden">
+            <div className="absolute inset-0 overflow-hidden h-full">
+              <Transition.Child
+                as={Fragment}
+                enter="transform transition ease-in-out duration-300"
+                enterFrom="translate-x-full"
+                enterTo="translate-x-0"
+                leave="transform transition ease-in-out duration-300"
+                leaveFrom="translate-x-0"
+                leaveTo="translate-x-full"
+              >
+                <Dialog.Panel className="pointer-events-auto h-full w-full">
+                  <div className="flex h-full flex-col bg-white shadow-xl w-full">
+                    <div className="flex-1 py-6 px-4 overflow-y-auto">
+                      <div className="flex items-center justify-between">
+                        <h2 className="text-lg font-medium text-gray-900">
+                          Menu
+                        </h2>
+                        <button
+                          className="text-gray-400 hover:text-gray-500"
+                          onClick={toggleMenu}
+                        >
+                          <IoMdClose className="h-6 w-6" />
+                        </button>
+                      </div>
+                      <div className="mt-6">
+                        <ul className="space-y-4">
+                          <li>
+                            <Link
+                              to="/categories"
+                              className="text-gray-900 hover:text-[#f8b825] font-bold text-lg"
+                              onClick={toggleMenu}
+                            >
+                              CATEGORIES
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/burgers"
+                              className="text-gray-900 hover:text-[#f8b825] font-bold text-lg"
+                              onClick={toggleMenu}
+                            >
+                              BURGERS
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/menu"
+                              className="text-gray-900 hover:text-[#f8b825] font-bold text-lg"
+                              onClick={toggleMenu}
+                            >
+                              MENU
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
       {isCartOpen && (
         <Transition.Root show={true} as={Fragment}>
           <Dialog className="relative z-10" onClose={closeCartModal}>
@@ -246,7 +318,7 @@ function Navbar() {
 
             <div className="fixed inset-0 overflow-hidden">
               <div className="absolute inset-0 overflow-hidden">
-                <div className="pointer-events-none fixed inset-y-0 right-0 w-full max-w-full pl-10 flex justify-center items-center">
+                <div className="pointer-events-none fixed inset-y-0 right-0 left-0 mx-auto w-[90%] md:w-full max-w-full md:pl-10 flex justify-center items-center">
                   <Transition.Child
                     as={Fragment}
                     enter="transform transition ease-in-out duration-500 sm:duration-700"
@@ -257,14 +329,14 @@ function Navbar() {
                     leaveTo="translate-x-full"
                   >
                     <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                      <div className="inline-block w-full max-w-md p-6 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                      <div className="inline-block w-full max-w-md md:p-6 p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
                         <button
                           className="absolute top-4 right-4 text-gray-500 hover:text-gray-600"
                           onClick={closeLoginModal}
                         >
                           <IoMdClose className="h-6 w-6" />
                         </button>
-                        <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12">
+                        <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12 overflow-hidden">
                           Log in to your account
                         </h1>
                         <form className="mt-6" action="#" method="POST">
@@ -391,10 +463,10 @@ function Navbar() {
             <div className="fixed inset-0 overflow-hidden">
               <div className="absolute inset-0 overflow-hidden">
                 <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
-                  <form className="absolute top-[105px] right-0 left-0 w-1/2 mx-auto">
+                  <form className="absolute top-[105px] right-0 left-0 md:w-1/2 mx-auto">
                     <label
                       htmlFor="default-search"
-                      className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+                      className="mb-2 text-sm md:font-medium font-normal text-gray-900 sr-only dark:text-white"
                     >
                       Search
                     </label>
@@ -402,13 +474,11 @@ function Navbar() {
                       <input
                         type="search"
                         id="default-search"
-                        className="block w-full p-4 text-sm uppercase border font-semibold border-gray-300 bg-white dark:border-gray-600 outline-none placeholder:text-black text-black"
+                        className="block w-full p-4 pl-10 md:pl-0 md:text-sm text-xs uppercase border md:font-semibold border-gray-300 bg-white dark:border-gray-600 outline-none placeholder:text-black text-black"
                         placeholder="Search burgers..."
                         required
                       />
-
-
-                        <MdOutlineSearch className="m-auto w-[32px] h-[32px] absolute right-2" />
+                      <MdOutlineSearch className="m-auto md:w-[32px] md:h-[32px] h-[25px] w-[25px] absolute md:right-2 left-2" />
                     </div>
                   </form>
                 </Dialog.Panel>

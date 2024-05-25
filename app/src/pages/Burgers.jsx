@@ -1,7 +1,7 @@
 import Navbar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
-function Search() {
+function Burgers() {
   return (
     <div className="bg-black">
       <Navbar />
@@ -10,4 +10,4 @@ function Search() {
   );
 }
 
-export default Search;
+export default Burgers;
