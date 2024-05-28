@@ -1,19 +1,21 @@
 import Navbar from "../components/navbar/navbar";
 import Banner from "../components/banner/banner";
 import Menu from "../components/menu/menu";
-import Categories from "../components/categories/categories";
-import Rating from "../components/rating/rating";
+import Promotion from "../components/promotion/promotion";
 import Burgers from "../components/burgers/burgers";
 import Footer from "../components/footer/footer";
+import About from "../components/about/about";
+// import Rating from "../components/rating/rating";
 
 function Index() {
   return (
     <div className="bg-black">
       <Navbar />
       <Banner />
-      <Categories />
+      <Promotion />
       <Burgers />
       <Menu />
+      <About/>
       <Footer />
     </div>
   );

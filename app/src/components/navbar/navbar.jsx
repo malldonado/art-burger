@@ -31,20 +31,23 @@ function Navbar() {
   return (
     <div className="w-full h-24 bg-black flex items-center justify-between max-w-7xl mx-auto px-4">
       <div className="max-w-7xl h-full w-full flex justify-between items-center mx-auto">
-        <div className="flex items-center">
+        <div className="flex items-end">
           <Link to="/">
             <img className="w-40 mr-10" src={Logo} alt="Logo" />
           </Link>
           <div className="hidden md:flex">
           <ul className="flex text-white font-bold text-2xl gap-x-6">
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <Link to="/categories">CATEGORIES</Link>
+              <Link to="/promotion">PROMOTION</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
               <Link to="/burgers">BURGERS</Link>
             </li>
             <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
               <Link to="/menu">MENU</Link>
+            </li>
+            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
+              <Link to="/about">ABOUT</Link>
             </li>
           </ul>
           </div>
@@ -122,11 +125,11 @@ function Navbar() {
                         <ul className="space-y-4">
                           <li>
                             <Link
-                              to="/categories"
+                              to="/promotion"
                               className="text-gray-900 hover:text-[#f8b825] font-bold text-lg"
                               onClick={toggleMenu}
                             >
-                              CATEGORIES
+                              PROMOTION
                             </Link>
                           </li>
                           <li>
@@ -145,6 +148,15 @@ function Navbar() {
                               onClick={toggleMenu}
                             >
                               MENU
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/about"
+                              className="text-gray-900 hover:text-[#f8b825] font-bold text-lg"
+                              onClick={toggleMenu}
+                            >
+                              ABOUT
                             </Link>
                           </li>
                         </ul>
@@ -190,7 +202,7 @@ function Navbar() {
                         <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                           <div className="flex items-start justify-between">
                             <Dialog.Title className="text-lg font-medium text-gray-900">
-                              Shopping cart
+                              Cart
                             </Dialog.Title>
                             <div className="ml-3 flex h-7 items-center">
                               <button
@@ -263,19 +275,27 @@ function Navbar() {
                         </div>
 
                         <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
-                          <div className="flex justify-between text-base font-medium text-gray-900">
-                            <p>Subtotal</p>
-                            <p>$262.00</p>
+                          <div className="pb-5">
+                            <div className="flex justify-between text-base font-medium text-gray-900">
+                              <p>Shipping</p>
+                              <p>$12.00</p>
+                            </div>
+                            <p className="mt-0.5 text-sm text-gray-500">
+                              Shipping and taxes calculated at checkout.
+                            </p>
                           </div>
-                          <p className="mt-0.5 text-sm text-gray-500">
-                            Shipping and taxes calculated at checkout.
-                          </p>
+                          <div className="border-t border-gray-200 pt-5">
+                            <div className="flex justify-between text-base font-medium text-gray-900">
+                              <p>Total</p>
+                              <p>$262.00</p>
+                            </div>
+                          </div>
                           <div className="mt-6">
                             <a
                               href="#"
                               className="flex items-center justify-center border-2 border-transparent bg-black px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-white hover:text-black hover:border-black"
                             >
-                              Checkout
+                              Finished
                             </a>
                           </div>
                           <div className="mt-6 flex justify-center text-center text-sm text-gray-500">

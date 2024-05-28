@@ -26,6 +26,18 @@ body::-webkit-scrollbar-thumb:hover {
   background: #f8b825;
 }
 
-span, a, li, div, button {
+span,
+a,
+li,
+div,
+button,
+li,
+ul,
+h1
+p {
   overflow-y: hidden !important;
+}
+
+.__screen {
+  height: calc(100vh - 100px) !important;
 }

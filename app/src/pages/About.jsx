@@ -1,15 +1,15 @@
 import Navbar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
-import BurgersPage from "../components/burgers/burgers";
+import AboutPage from "../components/about/aboutFull";
 
-function Burgers() {
+function About() {
   return (
     <div className="bg-black">
       <Navbar />
-      <BurgersPage/>
+      <AboutPage/>
       <Footer />
     </div>
   );
 }
 
-export default Burgers;
+export default About;
