@@ -55,7 +55,7 @@ const Modal = ({ open, setOpen }) => {
                           type="text"
                           id="burger"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none"
-                          placeholder="Name of the burger"
+                          placeholder="Burger"
                           required
                         />
                       </div>
@@ -70,7 +70,7 @@ const Modal = ({ open, setOpen }) => {
                           type="text"
                           id="description"
                           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none"
-                          placeholder="Burger with all ingredients"
+                          placeholder="Description"
                           required
                         />
                       </div>
@@ -86,7 +86,7 @@ const Modal = ({ open, setOpen }) => {
                         type="number"
                         id="price"
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 outline-none"
-                        placeholder="$12"
+                        placeholder="Value"
                         required
                       />
                     </div>
@@ -95,7 +95,7 @@ const Modal = ({ open, setOpen }) => {
                 <div className="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                   <button
                     type="button"
-                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto"
+                    className="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-black shadow-sm bg-[#ffc100] sm:ml-3 sm:w-auto"
                     onClick={() => setOpen(false)}
                   >
                     Save

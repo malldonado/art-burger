@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Product from "../../assets/product.jpg";
 import Product2 from "../../assets/product2.jpg";
 import Product3 from "../../assets/product3.jpg";
 
-const productsMenu = [
+const products = [
   {
     image: Product,
     name: "Gourmet Mac and Cheese Burger",
@@ -42,50 +42,9 @@ const productsMenu = [
   },
 ];
 
-const productsBurgers = [
-  {
-    image: Product,
-    name: "Gourmet Mac and Cheese Burger",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  },
-  {
-    image: Product2,
-    name: "Caramelized Onion Turkey Burger",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  },
-  {
-    image: Product3,
-    name: "Jalapeno Popper Chicken Burger",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  },
-  {
-    image: Product,
-    name: "Gourmet Mac and Cheese Burger",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  },
-  {
-    image: Product2,
-    name: "Caramelized Onion Turkey Burger",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  },
-  {
-    image: Product3,
-    name: "Jalapeno Popper Chicken Burger",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-  },
-];
-
-const Menu = () => {
+const Search = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1000);
-  const [isHomePage, setIsHomePage] = useState(
-    window.location.pathname === "/"
-  );
+  const [isHomePage, setIsHomePage] = useState(window.location.pathname === '/');
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth < 1000);
@@ -95,8 +54,7 @@ const Menu = () => {
   }, []);
 
   useEffect(() => {
-    const handlePathChange = () =>
-      setIsHomePage(window.location.pathname === "/");
+    const handlePathChange = () => setIsHomePage(window.location.pathname === '/');
 
     window.addEventListener("popstate", handlePathChange);
     return () => window.removeEventListener("popstate", handlePathChange);
@@ -144,34 +102,11 @@ const Menu = () => {
   return (
     <div className="mt-24 max-w-7xl mx-auto">
       {renderPromotionTitle()}
-      <div>
-        <span className="md:text-[50px] text-[30px] ml-3 text-white font-bold text-left uppercase">
-          MENU
-        </span>
-        <div
-          className={`w-full grid ${
-            isMobile ? "grid-cols-1 md:grid-cols-2" : "grid-cols-3"
-          } gap-1`}
-        >
-          {productsMenu.map((product, index) => renderProduct(product, index))}
+        <div className={`w-full grid ${isMobile ? "grid-cols-1 md:grid-cols-2" : "grid-cols-3"} gap-1`}>
+          {products.map((product, index) => renderProduct(product, index))}
         </div>
-      </div>
-      <div className="mt-24">
-        <span className="md:text-[50px] text-[30px] ml-3 text-white font-bold text-left uppercase">
-          MAIN BURGERS
-        </span>
-        <div
-          className={`w-full grid ${
-            isMobile ? "grid-cols-1 md:grid-cols-2" : "grid-cols-3"
-          } gap-1`}
-        >
-          {productsBurgers.map((product, index) =>
-            renderProduct(product, index)
-          )}
-        </div>
-      </div>
     </div>
   );
 };
 
-export default Menu;
+export default Search;

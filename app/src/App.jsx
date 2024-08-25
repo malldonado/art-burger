@@ -4,7 +4,6 @@ import Index from "./pages/Index";
 import Menu from "./pages/Menu";
 import Search from "./pages/Search";
 import Checkout from "./pages/Checkout";
-import Burgers from "./pages/Burgers";
 import Items from '../src/panel/pages/Items';
 import Orders from '../src/panel/pages/Orders';
 import CategoriesPanel from '../src/panel/pages/Categories';
@@ -23,7 +22,6 @@ function App() {
         <Route path="/menu" element={<Menu />} />
         <Route path="/search" element={<Search />} />
         <Route path="/product" element={<Product />} />
-        <Route path="/burgers" element={<Burgers />} />
         <Route path="/about" element={<About />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/panel-items" element={<Items />} />

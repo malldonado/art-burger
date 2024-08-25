@@ -25,8 +25,8 @@ function footer() {
           </div>
         </div>
       </div>
-      <div className="text-white block text-center mt-20">
-        <div>Malldonado.dev © 2024. All rights reserved.</div>
+      <div className="text-white block text-center mt-20 opacity-30">
+        <div>malldonado © 2024. All rights reserved.</div>
       </div>
     </div>
   );

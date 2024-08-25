@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Dialog, Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
@@ -17,13 +17,27 @@ const products = [
 function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+
+  useEffect(() => {
+    if (isRegisterOpen) {
+      setIsLoginOpen(false);
+    }
+  }, [isRegisterOpen, setIsLoginOpen]);
+
+  const handleChange = (event) => {
+    setIsChecked(event.target.checked);
+  };
 
   const openCartModal = () => setIsCartOpen(true);
   const closeCartModal = () => setIsCartOpen(false);
   const openLoginModal = () => setIsLoginOpen(true);
   const closeLoginModal = () => setIsLoginOpen(false);
+  const openRegisterModal = () => setIsRegisterOpen(true);
+  const closeRegisterModal = () => setIsRegisterOpen(false);
   const openSearchModal = () => setIsSearchOpen(true);
   const closeSearchModal = () => setIsSearchOpen(false);
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -36,20 +50,17 @@ function Navbar() {
             <img className="w-40 mr-10" src={Logo} alt="Logo" />
           </Link>
           <div className="hidden md:flex">
-          <ul className="flex text-white font-bold text-2xl gap-x-6">
-            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <Link to="/promotion">PROMOTION</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <Link to="/burgers">BURGERS</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <Link to="/menu">MENU</Link>
-            </li>
-            <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
-              <Link to="/about">ABOUT</Link>
-            </li>
-          </ul>
+            <ul className="flex text-white font-bold text-2xl gap-x-6">
+              <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
+                <Link to="/promotion">PROMOTION</Link>
+              </li>
+              <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
+                <Link to="/menu">MENU</Link>
+              </li>
+              <li className="border-b-4 border-transparent hover:border-b-3 hover:border-[#f8b825]">
+                <Link to="/about">ABOUT</Link>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="flex items-center gap-x-5">
@@ -351,8 +362,8 @@ function Navbar() {
                     <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
                       <div className="inline-block w-full max-w-md md:p-6 p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
                         <button
-                          className="absolute top-4 right-4 text-gray-500 hover:text-gray-600"
                           onClick={closeLoginModal}
+                          className="absolute top-4 right-4 text-gray-500 hover:text-gray-600"
                         >
                           <IoMdClose className="h-6 w-6" />
                         </button>
@@ -387,7 +398,7 @@ function Navbar() {
                               required
                             />
                           </div>
-                          <div className="text-right mt-2">
+                          <div className="text-left mt-2">
                             <a
                               href="#"
                               className="text-sm font-semibold text-black hover:text-[#f8b825] focus:text-[#f8b825]"
@@ -450,8 +461,8 @@ function Navbar() {
                         <p className="mt-8">
                           Need an account?{" "}
                           <a
-                            href="#"
-                            className="text-black hover:text-[#f8b825] font-semibold"
+                            onClick={openRegisterModal}
+                            className="text-black hover:text-[#f8b825] font-semibold cursor-pointer"
                           >
                             Create an account
                           </a>
@@ -494,14 +505,116 @@ function Navbar() {
                       <input
                         type="search"
                         id="default-search"
-                        className="block w-full p-4 pl-10 md:pl-0 md:text-sm text-xs uppercase border md:font-semibold border-gray-300 bg-white dark:border-gray-600 outline-none placeholder:text-black text-black"
+                        className="block w-full p-4 pl-10 md:pl-4 md:text-sm text-xs uppercase border md:font-semibold border-gray-300 bg-white dark:border-gray-600 outline-none placeholder:text-black text-black"
                         placeholder="Search burgers..."
                         required
                       />
-                      <MdOutlineSearch className="m-auto md:w-[32px] md:h-[32px] h-[25px] w-[25px] absolute md:right-2 left-2" />
+                      <MdOutlineSearch className="m-auto md:w-[32px] md:h-[32px] h-[25px] w-[25px] absolute md:right-4 md:left-auto right-auto left-2" />
                     </div>
                   </form>
                 </Dialog.Panel>
+              </div>
+            </div>
+          </Dialog>
+        </Transition.Root>
+      )}
+      {isRegisterOpen && (
+        <Transition.Root show={true} as={Fragment}>
+          <Dialog className="relative z-10" onClose={closeRegisterModal}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-in-out duration-500"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in-out duration-500"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-hidden">
+              <div className="absolute inset-0 overflow-hidden">
+                <div className="pointer-events-none fixed inset-y-0 right-0 left-0 mx-auto w-[90%] md:w-full max-w-full md:pl-10 flex justify-center items-center">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="transform transition ease-in-out duration-500 sm:duration-700"
+                    enterFrom="translate-x-full"
+                    enterTo="translate-x-0"
+                    leave="transform transition ease-in-out duration-500 sm:duration-700"
+                    leaveFrom="translate-x-0"
+                    leaveTo="translate-x-full"
+                  >
+                    <Dialog.Panel className="pointer-events-auto w-screen max-w-md">
+                      <div className="inline-block w-full max-w-md md:p-6 p-4 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl">
+                        <button
+                          className="absolute top-4 right-4 text-gray-500 hover:text-gray-600"
+                          onClick={closeRegisterModal}
+                        >
+                          <IoMdClose className="h-6 w-6" />
+                        </button>
+
+                        <h1 className="text-xl md:text-2xl font-bold leading-tight mt-12 overflow-hidden">
+                          Register to ArtBurguer
+                        </h1>
+                        <form className="mt-6" action="#" method="POST">
+                          <div>
+                            <label className="block text-black">
+                              Email Address
+                            </label>
+                            <input
+                              type="email"
+                              name=""
+                              id=""
+                              placeholder="Enter Email Address"
+                              className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:bg-white focus:outline-none"
+                              autoFocus
+                              autoComplete="email"
+                              required
+                            />
+                          </div>
+                          <div className="mt-4">
+                            <label className="block text-black">Password</label>
+                            <input
+                              type="password"
+                              name=""
+                              id=""
+                              placeholder="Enter Password"
+                              minLength="6"
+                              className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:bg-white focus:outline-none"
+                              required
+                            />
+                          </div>
+                          <div className="text-left mt-2 flex items-center">
+                            <input
+                              type="checkbox"
+                              checked={isChecked}
+                              onChange={handleChange}
+                              className="text-sm font-semibold text-black hover:text-[#f8b825] focus:text-[#f8b825] w-[15px] h-[15px] mr-2"
+                            />
+                            <p>Agree with Terms & Conditions</p>
+                          </div>
+                          <button
+                            type="submit"
+                            className="w-full block bg-black border-2 border-transparent hover:border-black hover:bg-white text-white hover:text-black font-semibold px-4 py-3 mt-6"
+                          >
+                            Register
+                          </button>
+                        </form>
+                        <hr className="my-6 border-gray-300 w-full" />
+                        <p className="mt-8">
+                          I Already have an account{" "}
+                          <a
+                            onClick={openLoginModal}
+                            className="text-black hover:text-[#f8b825] font-semibold cursor-pointer"
+                          >
+                            Sign in
+                          </a>
+                        </p>
+                      </div>
+                    </Dialog.Panel>
+                  </Transition.Child>
+                </div>
               </div>
             </div>
           </Dialog>

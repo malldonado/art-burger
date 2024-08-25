@@ -6,9 +6,9 @@ const data = [
     email: "jobs@sailboatui.com",
     imgSrc:
       "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-    state: "Active",
-    charge: "Client",
-    teams: ["Design", "Product", "Develop"],
+    address: "Rua Frederico Guerreiro, 123, Santos",
+    orders: "14",
+    avaliation: "4.8",
   },
 ];
 
@@ -22,15 +22,14 @@ const tableUsers = () => {
               Name
             </th>
             <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-              State
+              Address
             </th>
-            <th scope="col" className="px-6 py-4 font-medium text-gray-900">
-              Role
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900 text-center">
+              All Orders
             </th>
-            <th
-              scope="col"
-              className="px-6 py-4 font-medium text-gray-900"
-            ></th>
+            <th scope="col" className="px-6 py-4 font-medium text-gray-900 text-center">
+              Avaliation
+            </th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100 border-t border-gray-100 bg-white">
@@ -50,23 +49,9 @@ const tableUsers = () => {
                   <div className="text-gray-400">{person.email}</div>
                 </div>
               </th>
-              <td className="px-6 py-4">
-                <span className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600">
-                  <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                  {person.state}
-                </span>
-              </td>
-              <td className="px-6 py-4">{person.charge}</td>
-              <td className="px-6 py-4">
-                <div className="flex justify-end gap-4">
-                  <button>
-                    <RiDeleteBinLine className="h-6 w-6" />
-                  </button>
-                  <button>
-                    <RiEdit2Line className="h-6 w-6" />
-                  </button>
-                </div>
-              </td>
+              <td className="px-6 py-4">{person.address}</td>
+              <td className="px-6 py-4 text-center">{person.orders}</td>
+              <td className="px-6 py-4 text-center">{person.avaliation}</td>
             </tr>
           ))}
         </tbody>

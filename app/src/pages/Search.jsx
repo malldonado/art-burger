@@ -1,13 +1,15 @@
 import Navbar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
+import Search from "../components/search/search";
 
-function Search() {
+function SearchPage() {
   return (
     <div className="bg-black">
       <Navbar />
-      {/* <Footer /> */}
+      <Search />
+      <Footer />
     </div>
   );
 }
 
-export default Search;
+export default SearchPage;
